@@ -33,6 +33,9 @@ public class Tab1Accounts extends Fragment {
 
         lv = view.findViewById(R.id.contacts);
 
+
+        // contact selection
+
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +61,9 @@ public class Tab1Accounts extends Fragment {
 
                     Cursor c = Objects.requireNonNull(getActivity()).managedQuery(contactData, null, null, null, null);
                     if (c.moveToFirst()) {
-                        String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+
+
+                        String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));  //selected contact
                         //String number = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
                         account.setAccountName(name);
@@ -68,9 +73,9 @@ public class Tab1Accounts extends Fragment {
 
                         Account account1;
 
-                        //    Log.e("Size", ""+dbHandler.size());
+                        //Log.e("Size", ""+dbHandler.size());
 
-                        if (dbHandler.size() > 0) {
+                        if (dbHandler.size() > 0) {  //adding to table
                             account1 = dbHandler.findHandler(name, "Account");
                             if (account1 == null) {
                                 dbHandler.addHandler("Account", account);
@@ -86,7 +91,7 @@ public class Tab1Accounts extends Fragment {
 
                         account1 = dbHandler.findHandler(name, "Account");
 
-                        if (lists.isEmpty() || !lists.contains(name)) {
+                        if (lists.isEmpty() || !lists.contains(name)) {  //adding to list
                             if (account1 != null)
                                 lists.add(account1.getAccountName());
                             else
@@ -96,20 +101,20 @@ public class Tab1Accounts extends Fragment {
                         Log.e("List of contacts", String.valueOf(lists));
 
 
-                        String s = dbHandler.loadHandler("Account");
+                        String s = dbHandler.loadHandler("Account");  //checking table in log
                         Log.e("table created", s);
 
 
                         CustomAdapter adapter = new CustomAdapter(lists, getContext());
                         Log.e("Test", "Setting adapter");
-                        lv.setAdapter(adapter);
+                        lv.setAdapter(adapter);  //setting list on screen later to be done with table
 
                         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {  //list se next screen jana
 
 
-                                account = dbHandler.findHandler(lists.get(position), "Account");
+                                account = dbHandler.findHandler(lists.get(position), "Account"); //selected list item ki table details
 
                                 Intent intent = new Intent(getActivity(), AccountScreen.class);
                                 intent.putExtra("name", lists.get(position));

@@ -11,8 +11,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
 
     //private static MyDBHandler sInstance;
-    //information of database
+
     //SQLiteDatabase db = getWritableDatabase();
+
+    //information of database
 
     public static final String TABLE_NAME = "Account";
     public static final String COLUMN_ID = "ID";
@@ -31,11 +33,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 */
 
-    /**
-     * Constructor should be private to prevent direct instantiation.
-     * Make a call to the static method "getInstance()" instead.
-     */
-    public MyDBHandler(Context context) {
+
+    MyDBHandler(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 
@@ -71,9 +70,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     }
 
+
+    //neeche hai databse ke methods
+
+
     public int size() {
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(); //this command makes table again n again
 
         int result_0 = 0;
         String query = "Select *  FROM " + TABLE_NAME + " ;";
@@ -84,17 +87,18 @@ public class MyDBHandler extends SQLiteOpenHelper {
             result_0++;
 
         }
+        cursor.close();
         return result_0;
     }
 
-    public String loadHandler(String tablename) {
+    public String loadHandler(String tablename) {   //to show table
         String result = "", result_2 = "", result_3 = "", result_1 = "";
         int result_0, result_4;
 
 
         String query = "Select * FROM " + tablename + " ;";
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(); //this command makes table again n again
 
         Cursor cursor = db.rawQuery(query, null);
 
@@ -133,7 +137,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return result;
     }
 
-    public void addHandler(String tablename, Account account) {
+    public void addHandler(String tablename, Account account) {  //add data to account
 
 /*
         Account account=null;
@@ -147,7 +151,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
             values.put(COLUMN_NAME, account.getAccountName());
 
-            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteDatabase db = this.getWritableDatabase();       //this command makes table again n again
             Log.e("data add", "insert " + account.getID() + account.getAccountName());
 
             db.insert(tablename, null, values);
@@ -172,7 +176,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     }
 
-    public void addHandler(String tablename, Product product) {
+    public void addHandler(String tablename, Product product) {  // above function overloaded to add to product
 
 /*
         Account account=null;
@@ -204,7 +208,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
             values.put("Price", product.getItemPrice());
 
-            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteDatabase db = this.getWritableDatabase();      //this command makes table again n again
             Log.e("data add", "insert " + product.getID() + product.getUserID() + product.getProductItem() + product.getItemPrice());
 
             db.insert(tablename, null, values);
@@ -213,10 +217,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     }
 
-    public Account findHandler(String name, String tablename) {
+    public Account findHandler(String name, String tablename) {     //name se table me dhundho
         String query = "Select * FROM " + tablename + " WHERE " + COLUMN_NAME + " = " + "'" + name + "' ;";
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();          //this command makes table again n again
 
         Cursor cursor = db.rawQuery(query, null);
 
@@ -241,7 +245,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return account;
     }
 
-    public Account findHandler(int ID, String tablename) {
+    public Account findHandler(int ID, String tablename) {         //id se table me dhundho
         String query = "Select * FROM " + tablename + " WHERE " + COLUMN_ID + " = " + "'" + ID + "' ;";
 
         SQLiteDatabase db = this.getWritableDatabase();

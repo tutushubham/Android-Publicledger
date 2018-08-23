@@ -17,7 +17,7 @@ public class AccountScreen extends AppCompatActivity {
     Product p = new Product();
     Button addProduct;
 
-    MyDBHandler dbHandler = new MyDBHandler(AccountScreen.this);
+    MyDBHandler dbHandler = new MyDBHandler(AccountScreen.this);  //error could be here but not sure how to pass dbhandler from TAb1Accounts to here
 
 
     @Override
@@ -43,18 +43,18 @@ public class AccountScreen extends AppCompatActivity {
 
                 p.setItemPrice(priceget);
                 p.setProductItem(itemget);
-                p.setUserID(ID);
+                p.setUserID(ID);              //product object me data dala intent n edittext se
 
 
-                dbHandler.addHandler("Product", p);
+                dbHandler.addHandler("Product", p);       //item added but previous data not retained...new table created
 
                 item.setText("");
                 price.setText("");
                 Log.e("product", "product dal gaya " + ID + " ke naam pe");
 
-                Log.e("account table ", dbHandler.loadHandler("Account"));
+                Log.e("account table ", dbHandler.loadHandler("Account"));        //prev table should come but new table is being made so its empty
 
-                Log.e("product table ", dbHandler.loadHandler("Product"));
+                Log.e("product table ", dbHandler.loadHandler("Product"));        // data is being added but as fresh entry
 
             }
         });
@@ -72,14 +72,14 @@ public class AccountScreen extends AppCompatActivity {
     }
 
 
-    public void findAccountt(View view, String name) {
+   /* public void findAccountt(View view, String name) {
 
-        //MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
+        MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
 
         TextView accName;
         accName = view.findViewById(R.id.accName);
 
-       /* Account account =
+        Account account =
 
                 dbHandler.findHandler(name);
 
@@ -87,22 +87,22 @@ public class AccountScreen extends AppCompatActivity {
 
             accName.setText(name);
 
-           *//* lst.setText(String.valueOf(account.getID()) + " " + account.getAccountName() + System.getProperty("line.separator"));
+           lst.setText(String.valueOf(account.getID()) + " " + account.getAccountName() + System.getProperty("line.separator"));
 
             studentid.setText("");
 
-            studentname.setText("");*//*
+            studentname.setText("");
 
         } else {
 
             accName.setText("No Match Found");
 
-            *//*studentid.setText("");
+            *//**//*studentid.setText("");
 
-            studentname.setText("");*//*
+            studentname.setText("");
 
-        }*/
+        }
 
-    }
+    }*/
 
 }

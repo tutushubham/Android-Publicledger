@@ -1,6 +1,6 @@
 package com.example.tutushubham.publicledger;
 
-public class Product {
+public class Product {  //product ke liye class
     // fields
 
     private int productID;
@@ -63,6 +63,8 @@ public class Product {
         this.productItem = productItem;
 
     }
+
+    //breakkkkkkkkkkkkkkkkkkkkk
 
     public String getItemPrice() {
 
