@@ -2,20 +2,63 @@ package com.example.tutushubham.publicledger;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
 public class AccountScreen extends AppCompatActivity {
 
     Toolbar tb;
+    EditText item, price;
+    String name;
+    Product p = new Product();
+    Button addProduct;
+
+    MyDBHandler dbHandler = new MyDBHandler(AccountScreen.this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_screen);
+        item = findViewById(R.id.item);
+        price = findViewById(R.id.price);
+        name = getIntent().getStringExtra("name");
+        final int ID = getIntent().getIntExtra("User_ID", 1);
 
-        String name = getIntent().getStringExtra("name");
+        addProduct = findViewById(R.id.button_product_send);
+
+        addProduct.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                String itemget = item.getText().toString();
+                String priceget = price.getText().toString();
+
+                Log.e("data mila", "" + itemget + priceget + ID + name);
+
+                p.setItemPrice(priceget);
+                p.setProductItem(itemget);
+                p.setUserID(ID);
+
+
+                dbHandler.addHandler("Product", p);
+
+                item.setText("");
+                price.setText("");
+                Log.e("product", "product dal gaya " + ID + " ke naam pe");
+
+                Log.e("account table ", dbHandler.loadHandler("Account"));
+
+                Log.e("product table ", dbHandler.loadHandler("Product"));
+
+            }
+        });
+
 
         //View view = inflater.inflate(R.layout.activity_account_screen, container, false);
 
@@ -27,6 +70,7 @@ public class AccountScreen extends AppCompatActivity {
         //  findAccountt(tb, name);
 
     }
+
 
     public void findAccountt(View view, String name) {
 

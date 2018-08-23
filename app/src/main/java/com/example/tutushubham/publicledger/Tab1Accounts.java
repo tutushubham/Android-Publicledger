@@ -23,7 +23,7 @@ public class Tab1Accounts extends Fragment {
     ArrayList<String> lists = new ArrayList<>();
     Account account = new Account();
     ListView lv;
-    MyDBHandler dbHandler = new MyDBHandler(Tab1Accounts.this, null, null, 1);
+    MyDBHandler dbHandler = new MyDBHandler(getActivity());
     int id = 1;
 
     @Override
@@ -62,9 +62,7 @@ public class Tab1Accounts extends Fragment {
                         //String number = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
                         account.setAccountName(name);
-                        account.setID(id);
-                        account.setItemPrice("null");
-                        account.setAccountItem("null");
+                        //account.setID(id);
 
                         //dbHandler.addHandler(account);
 
@@ -73,20 +71,20 @@ public class Tab1Accounts extends Fragment {
                         //    Log.e("Size", ""+dbHandler.size());
 
                         if (dbHandler.size() > 0) {
-                            account1 = dbHandler.findHandler(name);
+                            account1 = dbHandler.findHandler(name, "Account");
                             if (account1 == null) {
-                                dbHandler.addHandler(account);
-                                id++;
+                                dbHandler.addHandler("Account", account);
+                                //id++;
                             } else if (account1.getAccountName().equals(name)) {
                                 Log.e("mat karo add", " code chala");
                             }
                         } else {
-                            dbHandler.addHandler(account);
-                            id++;
+                            dbHandler.addHandler("Account", account);
+                            //id++;
                         }
 
 
-                        account1 = dbHandler.findHandler(name);
+                        account1 = dbHandler.findHandler(name, "Account");
 
                         if (lists.isEmpty() || !lists.contains(name)) {
                             if (account1 != null)
@@ -98,7 +96,7 @@ public class Tab1Accounts extends Fragment {
                         Log.e("List of contacts", String.valueOf(lists));
 
 
-                        String s = dbHandler.loadHandler();
+                        String s = dbHandler.loadHandler("Account");
                         Log.e("table created", s);
 
 
@@ -109,8 +107,14 @@ public class Tab1Accounts extends Fragment {
                         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                                account = dbHandler.findHandler(lists.get(position), "Account");
+
                                 Intent intent = new Intent(getActivity(), AccountScreen.class);
                                 intent.putExtra("name", lists.get(position));
+                                intent.putExtra("User_ID", account.getID());
+
                                 startActivity(intent);
 
                             }

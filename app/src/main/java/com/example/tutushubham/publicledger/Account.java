@@ -7,9 +7,6 @@ public class Account {
 
     private String accountName;
 
-    private String accountItem;
-
-    private String itemPrice;
 
     // constructors
 
@@ -47,30 +44,6 @@ public class Account {
     public void setAccountName(String accountname) {
 
         this.accountName = accountname;
-
-    }
-
-    public String getAccountItem() {
-
-        return this.accountItem;
-
-    }
-
-    public void setAccountItem(String accountItem) {
-
-        this.accountItem = accountItem;
-
-    }
-
-    public String getItemPrice() {
-
-        return this.itemPrice;
-
-    }
-
-    public void setItemPrice(String itemPrice) {
-
-        this.itemPrice = itemPrice;
 
     }
 }
