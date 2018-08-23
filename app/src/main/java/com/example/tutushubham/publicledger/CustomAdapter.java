@@ -38,10 +38,10 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View listItem = convertView;
-        if(listItem == null)
-            listItem = LayoutInflater.from(context).inflate(R.layout.samplec_contact,parent,false);
-        TextView name=listItem.findViewById(R.id.text1);
-        TextView amount=listItem.findViewById(R.id.text2);
+        if (listItem == null)
+            listItem = LayoutInflater.from(context).inflate(R.layout.samplec_contact, parent, false);
+        TextView name = listItem.findViewById(R.id.text1);
+        TextView amount = listItem.findViewById(R.id.text2);
 
         Log.e("adapter", "Setting text");
 

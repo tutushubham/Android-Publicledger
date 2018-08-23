@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AccountScreen"
+        <activity
+            android:name=".AccountScreen"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
