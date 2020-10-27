@@ -152,7 +152,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
             values.put(COLUMN_NAME, account.getAccountName());
 
             SQLiteDatabase db = this.getWritableDatabase();       //this command makes table again n again
-            Log.e("data add", "insert " + account.getID() + account.getAccountName());
+            Log.e("data add", "insert " + account.getId() + account.getAccountName());
 
             db.insert(tablename, null, values);
             Log.e("after data add", "insert ke baad");
@@ -200,16 +200,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
             // edhar pe code likh where condn daalke and dono table connect karke
 
 
-            values.put("ID", product.getID());
+            values.put("ID", product.getId());
 
-            values.put("User_ID", product.getUserID());
+            values.put("User_ID", product.getUserId());
 
             values.put("Product_Name", product.getProductItem());
 
             values.put("Price", product.getItemPrice());
 
             SQLiteDatabase db = this.getWritableDatabase();      //this command makes table again n again
-            Log.e("data add", "insert " + product.getID() + product.getUserID() + product.getProductItem() + product.getItemPrice());
+            Log.e("data add", "insert " + product.getId() + product.getUserId() + product.getProductItem() + product.getItemPrice());
 
             db.insert(tablename, null, values);
             Log.e("after data add", "insert ke baad");
@@ -230,7 +230,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
             cursor.moveToFirst();
 
-            account.setID(Integer.parseInt(cursor.getString(0)));
+            account.setId(Integer.parseInt(cursor.getString(0)));
 
             account.setAccountName(cursor.getString(1));
 
@@ -258,7 +258,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
             cursor.moveToFirst();
 
-            account.setID(Integer.parseInt(cursor.getString(0)));
+            account.setId(Integer.parseInt(cursor.getString(0)));
 
             account.setAccountName(cursor.getString(1));
 
