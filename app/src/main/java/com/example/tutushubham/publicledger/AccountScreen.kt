@@ -20,11 +20,8 @@ class AccountScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_screen)
-        item = findViewById(R.id.item)
-        price = findViewById(R.id.price)
-        name = intent.getStringExtra("name")
+        initViews()
         val ID = intent.getIntExtra("User_ID", 1)
-        addProduct = findViewById(R.id.button_product_send)
         addProduct?.let { btnAdd ->
             btnAdd.setOnClickListener {
                 val itemget = item?.text.toString()
@@ -75,6 +72,13 @@ class AccountScreen : AppCompatActivity() {
             accName.setText("No Match Found");
 
             */
+
+    private fun initViews() {
+        item = findViewById(R.id.item)
+        price = findViewById(R.id.price)
+        name = intent.getStringExtra("name")
+        addProduct = findViewById(R.id.button_product_send)
+    }
     /**/ /*studentid.setText("");
 
             studentname.setText("");
