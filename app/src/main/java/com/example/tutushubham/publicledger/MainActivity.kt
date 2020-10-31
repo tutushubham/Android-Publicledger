@@ -101,10 +101,10 @@ class MainActivity : AppCompatActivity() {
 
         override fun getPageTitle(position: Int): CharSequence? {            //tabs ka title (buggy)
             return when (position) {
-                0 -> "Accounts"
-                1 -> "Calendar"
-                2 -> "Notes"
-                3 -> "Calculator"
+                0 -> getString(R.string.accounts)
+                1 -> getString(R.string.calendar)
+                2 -> getString(R.string.notes)
+                3 -> getString(R.string.calculator)
                 else -> null
             }
         }
