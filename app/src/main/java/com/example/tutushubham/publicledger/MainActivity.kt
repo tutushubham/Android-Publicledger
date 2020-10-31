@@ -79,16 +79,16 @@ class MainActivity : AppCompatActivity() {
     inner class SectionsPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
         override fun getItem(position: Int): Fragment {                             //tabs set karna
             return when (position) {
-                0 -> {
+                Constants.TAB_POSITION_0 -> {
                     Tab1Accounts()
                 }
-                1 -> {
+                Constants.TAB_POSITION_1 -> {
                     Tab2Calendar()
                 }
-                2 -> {
+                Constants.TAB_POSITION_2 -> {
                     Tab3Notes()
                 }
-                3 -> {
+                Constants.TAB_POSITION_3 -> {
                     Tab4Calc()
                 }
                 else -> Tab1Accounts() // Default
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getCount(): Int {           //total tabs
-            return 4
+            return Constants.DEFAULT_TAB_POSITION
         }
 
         override fun getPageTitle(position: Int): CharSequence? {            //tabs ka title (buggy)
