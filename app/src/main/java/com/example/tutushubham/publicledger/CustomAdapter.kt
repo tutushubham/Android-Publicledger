@@ -9,17 +9,12 @@ import android.widget.TextView
 import java.util.*
 
 class CustomAdapter(var lists: ArrayList<String>, var context: Context) : BaseAdapter() {
-    override fun getCount(): Int {
-        return lists.size
-    }
+    override fun getCount() = lists.size
 
-    override fun getItem(position: Int): String {
-        return lists[position]
-    }
+    override fun getItem(position: Int) = lists[position]
 
-    override fun getItemId(position: Int): Long {
-        return 0
-    }
+
+    override fun getItemId(position: Int) = 0.toLong()
 
     override fun getView(position: Int, convertView: View, parent: ViewGroup): View {
         val name = convertView.findViewById<TextView>(R.id.text1)
