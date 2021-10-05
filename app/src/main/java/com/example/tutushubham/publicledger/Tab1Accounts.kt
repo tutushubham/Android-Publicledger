@@ -16,7 +16,7 @@ import java.util.*
 
 class Tab1Accounts : Fragment(R.layout.tab1accounts) {
 
-    private var lists = ArrayList<String?>()
+    private var lists = ArrayList<String>()
     private var account = Account()
     private var lv: ListView? = null
     private var dbHandler = MyDBHandler(activity)
@@ -50,11 +50,11 @@ class Tab1Accounts : Fragment(R.layout.tab1accounts) {
                     //account.setID(id);
 
                     //dbHandler.addHandler(account);
-                    var account1: Account?
+                    lateinit var account1: Account
 
                     //Log.e("Size", ""+dbHandler.size());
                     if (dbHandler.size() > 0) {  //adding to table
-                        account1 = dbHandler.findHandler(name, "Account")
+                        account1 = dbHandler!!.findHandler(name, "Account")!!
                         if (account1 == null) {
                             dbHandler.addHandler("Account", account)
                             //id++;
@@ -65,18 +65,18 @@ class Tab1Accounts : Fragment(R.layout.tab1accounts) {
                         dbHandler.addHandler("Account", account)
                         //id++;
                     }
-                    account1 = dbHandler.findHandler(name, "Account")
+                    account1 = dbHandler!!.findHandler(name, "Account")!!
                     if (lists.isEmpty() || !lists.contains(name)) {  //adding to list
-                        if (account1 != null) lists.add(account1.accountName) else lists.add(account.accountName)
+                        if (account1 != null) lists.add(account1!!.accountName!!) else lists.add(account!!.accountName!!)
                     }
                     Log.e("List of contacts", lists.toString())
                     val s = dbHandler.loadHandler("Account") //checking table in log
                     Log.e("table created", s)
-                    val adapter = CustomAdapter(lists, context)
+                    val adapter = CustomAdapter(lists, context!!)
                     Log.e("Test", "Setting adapter")
                     lv!!.adapter = adapter //setting list on screen later to be done with table
                     lv!!.onItemClickListener = OnItemClickListener { parent, view, position, id -> //list se next screen jana
-                        account = dbHandler.findHandler(lists[position], "Account") //selected list item ki table details
+                        account = dbHandler!!.findHandler(lists[position], "Account")!! //selected list item ki table details
                         val intent = Intent(activity, AccountScreen::class.java)
                         intent.putExtra("name", lists[position])
                         intent.putExtra("User_ID", account.id)
